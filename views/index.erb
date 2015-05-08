@@ -1,0 +1,16 @@
+<h1>Welcome to your hair salon!</h1>
+<br>
+<h3>Your current stylists:</h3>
+
+<% if @stylists.any?() %>
+  <ul>
+    <% @stylists.each do |stylist| %>
+    <li><%= stylist.name() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h4>You don't have any stylists yet!</h4>
+<% end %>
+
+<br>
+<a href="/stylist_form">Click here to add a new stylist</a>
