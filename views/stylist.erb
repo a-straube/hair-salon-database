@@ -1,0 +1,21 @@
+<h1>Edit clients for <%= @stylist.name() %></h1>
+
+<% if @clients.any?() %>
+
+  <form action="stylist/<%= @stylist.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+      <% @clients.each do |client| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="client_id[]" value="<%= client.id() %>"><%= client.name() %>
+          </label>
+        </div>
+      <% end %>
+    <button type="submit">Add client(s)</button>
+  </form>
+
+<% end %>
+
+<br>
+
+<a href="/">Return home</a>

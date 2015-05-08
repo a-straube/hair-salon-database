@@ -31,7 +31,7 @@ class Client
     @id = id
     returned_client = DB.exec("SELECT * FROM clients WHERE id = #{@id};")
     @name = returned_client.first().fetch("name")
-    Client.new({:name => @name, :id => @id})
+    Client.new({:name => @name, :id => @id, :stylist_id => nil})
   end
 
   define_method(:update) do |attributes|

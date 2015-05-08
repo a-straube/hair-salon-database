@@ -4,8 +4,8 @@
 
   <% if @stylists.any?() %>
     <ul>
-      <% @stylists.each do |stylist| %>
-      <li><%= stylist.name() %></li>
+      <% @stylists.each do |each_stylist| %>
+      <li><a href="/stylist/<%= each_stylist.id() %>"><%= each_stylist.name() %></a></li>
       <% end %>
     </ul>
   <% else %>
@@ -13,6 +13,8 @@
   <% end %>
 
 <br>
+
+<h4><i>To add clients to a stylist, click on the stylist's name.</i></h4>
 
 <h3>Your current clients:</h3>
 
