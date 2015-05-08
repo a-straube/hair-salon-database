@@ -32,4 +32,9 @@ class Stylist
     @name = returned_stylist.first().fetch("name")
     Stylist.new({:name => @name, :id => @id})
   end
+
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name, @name)
+    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{self.id()};")
+  end
 end
