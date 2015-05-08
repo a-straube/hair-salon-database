@@ -2,15 +2,32 @@
 <br>
 <h3>Your current stylists:</h3>
 
-<% if @stylists.any?() %>
+  <% if @stylists.any?() %>
+    <ul>
+      <% @stylists.each do |stylist| %>
+      <li><%= stylist.name() %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h4>You don't have any stylists yet!</h4>
+  <% end %>
+
+<br>
+
+<h3>Your current clients:</h3>
+
+<% if @clients.any?() %>
   <ul>
-    <% @stylists.each do |stylist| %>
-    <li><%= stylist.name() %></li>
+    <% @clients.each do |client| %>
+    <li><%= client.name() %></li>
     <% end %>
   </ul>
 <% else %>
-  <h4>You don't have any stylists yet!</h4>
+  <h4>You don't have any clients yet! You should probably start advertising!</h4>
 <% end %>
 
 <br>
+
 <a href="/stylist_form">Click here to add a new stylist</a>
+<br>
+<a href="/client_form">Click here to add a client</a>

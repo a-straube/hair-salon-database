@@ -22,5 +22,19 @@ post('/') do
   stylist = Stylist.new({:name => name, :id => nil})
   stylist.save()
   @stylists = Stylist.all()
+  @clients = Client.all()
+  erb(:index)
+end
+
+get('/client_form') do
+  erb(:client_form)
+end
+
+post('/add_client') do
+  client_name = params.fetch('client_name')
+  client = Client.new({:name => client_name, :id => nil, :stylist_id => nil})
+  client.save()
+  @clients = Client.all()
+  @stylists = Stylist.all()
   erb(:index)
 end
