@@ -9,4 +9,13 @@ describe(Stylist) do
     end
   end
 
+  describe('.all') do
+    it("returns all of the stylists in the database") do
+      stylist1 = Stylist.new({:name => "Barbara Johnson", :id => nil})
+      stylist1.save()
+      stylist2 = Stylist.new({:name => "Jo Smith", :id => nil})
+      stylist2.save()
+      expect(Stylist.all()).to(eq([stylist1, stylist2]))
+    end
+  end
 end
