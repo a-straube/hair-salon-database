@@ -25,4 +25,16 @@ class Client
     result = DB.exec("INSERT INTO clients (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
+
+  define_singleton_method(:find) do |id|
+    @id = id
+    returned_client = DB.exec("SELECT * FROM clients WHERE id = #{@id};")
+    @name = returned_client.first().fetch("name")
+    Client.new({:name => @name, :id => @id})
+  end
+
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name, @name)
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{self.id()};")
+  end
 end
