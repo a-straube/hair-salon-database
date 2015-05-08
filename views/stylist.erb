@@ -1,21 +1,33 @@
-<h1>Edit clients for <%= @stylist.name() %></h1>
+<h2>Add clients for <%= @stylist.name() %></h2>
 
-<% if @clients.any?() %>
+<form action="/connection" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input name="stylist_id" id="stylist_id" type="hidden" value="<%= @stylist.id() %>">
+<div class="form-group">
+  <label for="client">Client Name:</label>
+  <select id="client_id" name="client_id" type="text">
+    <% @clients.each do |client| %>
+    <option value="<%= client.id() %>"><%= client.name() %></option>
+    <% end %>
+  </select>
+</div>
 
-  <form action="stylist/<%= @stylist.id %>" method="post">
-    <input type="hidden" name="_method" value="patch">
-      <% @clients.each do |client| %>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="client_id[]" value="<%= client.id() %>"><%= client.name() %>
-          </label>
-        </div>
-      <% end %>
-    <button type="submit">Add client(s)</button>
-  </form>
-
-<% end %>
+<button type="submit" class="btn-success">Add</button>
+</form>
 
 <br>
+<br>
+<br>
+
+<h2><%= @stylist.name() %>'s current clients:</h2>
+<% if @stylist.clients.any? %>
+<ul>
+  <% @stylist.clients.each do |client| %>
+  <li><%= client.name %>
+  <% end %>
+</ul>
+<% else %>
+<h4>Time for this stylist to get some clients!</h4>
+<% end %>
 
 <a href="/">Return home</a>

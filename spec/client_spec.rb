@@ -19,19 +19,6 @@ describe(Client) do
     end
   end
 
-  describe('#add_stylist') do
-    it("assigns a stylist to a client") do
-      client = Client.new({:name => "Valeri Jones", :id => nil, :stylist_id => nil})
-      client.save()
-      stylist = Stylist.new({:name => "DD Arroyo", :id => nil})
-      stylist.save()
-      client.add_stylist("DD Arroyo")
-      stylist_id = stylist.id()
-      client_stylist_id = client.stylist_id()
-      expect(stylist_id).to(eq(client_stylist_id))
-    end
-  end
-
   describe('.find') do
     it("finds a specific client from an id") do
       client1 = Client.new({:name => "Barbara Johnson", :id => nil, :stylist_id => nil})

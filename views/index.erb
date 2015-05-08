@@ -14,14 +14,14 @@
 
 <br>
 
-<h4><i>To add clients to a stylist, click on the stylist's name.</i></h4>
+<h4><i>To add or view clients for a stylist, click on the stylist's name.</i></h4>
 
 <h3>Your current clients:</h3>
 
 <% if @clients.any?() %>
   <ul>
-    <% @clients.each do |client| %>
-    <li><%= client.name() %></li>
+    <% @clients.each do |each_client| %>
+    <li><a href="/client/<%= each_client.id() %>"><%= each_client.name() %><a></li>
     <% end %>
   </ul>
 <% else %>

@@ -45,14 +45,30 @@ get('/stylist/:id') do
   erb(:stylist)
 end
 
-patch('/stylist/stylist/:id') do
-  stylist_id = params.fetch("id").to_i()
-  stylist = Stylist.find(stylist_id)
-  name = stylist.name()
-  client_id = params.fetch("client_id")
-  @client = Client.find(client_id)
-  @client.add_stylist(name)
-  @clients = Client.all()
+get('/client/:id') do
+  @client = Client.find(params.fetch("id").to_i())
   @stylists = Stylist.all()
+  erb(:client)
+end
+
+patch('/connection') do
+  @stylist = Stylist.find(params.fetch("stylist_id"))
+  stylist_id = @stylist.id().to_i()
+  @client = Client.find(params.fetch("client_id").to_i())
+  @client.update({:stylist_id => stylist_id})
+  @stylists = Stylist.all()
+  @clients = Client.all()
   erb(:index)
 end
+
+# patch('/client/client/:id') do
+#   client_id = params.fetch("id").to_i()
+#   @client = Client.find(client_id)
+#   stylist_id = params.fetch("stylist_id")
+#   stylist = Stylist.find(stylist_id)
+#   name = stylist.name()
+#   @client.add_stylist(name)
+#   @clients = Client.all()
+#   @stylists = Stylist.all()
+#   erb(:index)
+# end
